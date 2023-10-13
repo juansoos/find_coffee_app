@@ -14,7 +14,7 @@ void main() {
       statusBarColor: CustomColors.brown,
     ));
 
-    final navigatorKey = GlobalKey<NavigatorState>();
+    final navigatorKey = FlutterModule.navigatorKey();
     runApp(MyApp(navigatorKey: navigatorKey));
   }, (error, stack) {
     Fimber.e('Not handled error $error, stacktrace $stack');

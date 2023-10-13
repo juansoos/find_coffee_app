@@ -1,4 +1,3 @@
-
 import 'package:find_coffee_app/src/config/configuration.dart';
 import 'package:flutter/material.dart';
 
@@ -40,6 +39,27 @@ class CustomTheme {
     );
   }
 
+  static NavigationBarThemeData get _navigatorBarTheme {
+    return NavigationBarThemeData(
+      backgroundColor: CustomColors.cream,
+      indicatorColor: CustomColors.brown,
+      shadowColor: CustomColors.lightBrown,
+      surfaceTintColor: CustomColors.lightBrown,
+      labelTextStyle: MaterialStateProperty.resolveWith((state) {
+        if (state.contains(MaterialState.selected)) {
+          return CustomTypography.body2.copyWith(color: CustomColors.brown);
+        }
+        return CustomTypography.body2.copyWith(color: CustomColors.lightBrown);
+      }),
+      iconTheme: MaterialStateProperty.resolveWith((state) {
+        if (state.contains(MaterialState.selected)) {
+          return const IconThemeData(color: CustomColors.background);
+        }
+        return const IconThemeData(color: CustomColors.lightBrown);
+      }),
+    );
+  }
+
   static ThemeData light = ThemeData.from(
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
@@ -58,5 +78,6 @@ class CustomTheme {
   ).copyWith(
     textTheme: _textTheme,
     elevatedButtonTheme: _elevatedButtonTheme,
+    navigationBarTheme: _navigatorBarTheme,
   );
 }
