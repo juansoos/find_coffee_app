@@ -1,3 +1,4 @@
+import 'package:find_coffee_app/src/common/di/modules_config.dart';
 import 'package:find_coffee_app/src/config/configuration.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +31,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
       floatingActionButton: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () => RouterModule.router().replaceTo(HomeRoute()),
           style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50)),
           child: const Text("Start"),
         ),

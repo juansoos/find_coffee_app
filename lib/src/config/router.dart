@@ -1,4 +1,5 @@
 import 'package:find_coffee_app/src/config/route.dart';
+import 'package:find_coffee_app/src/pages/home/home_page.dart';
 import 'package:find_coffee_app/src/pages/onboarding/onboarding_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fimber/flutter_fimber.dart';
@@ -57,4 +58,15 @@ class OnboardingRoute extends CustomRoute {
 
   @override
   Widget get page => const OnboardingPage();
+}
+
+class HomeRoute extends CustomRoute {
+  @override
+  Map<String, dynamic> get arguments => const {};
+
+  @override
+  String get name => 'HOME';
+
+  @override
+  Widget get page => const HomePage();
 }
