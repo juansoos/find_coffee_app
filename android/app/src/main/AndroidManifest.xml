@@ -3,6 +3,12 @@
         android:label="find_coffee_app"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+        <!-- TODO: Add your Google Maps API key here -->
+        <meta-data android:name="com.google.android.geo.API_KEY"
+                   android:value="AIzaSyAJ-yg0xP2Txz0Etw9M-ZvxpgoaIWvoRnA"/>
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
