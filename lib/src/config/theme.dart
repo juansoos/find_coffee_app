@@ -60,6 +60,15 @@ class CustomTheme {
     );
   }
 
+  static AppBarTheme get _appBarTheme {
+    return AppBarTheme(
+        color: CustomColors.brown,
+        foregroundColor: CustomColors.lightBrown,
+        titleTextStyle: CustomTypography.title1.copyWith(
+          color: CustomColors.background,
+        ));
+  }
+
   static ThemeData light = ThemeData.from(
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
@@ -77,6 +86,7 @@ class CustomTheme {
     useMaterial3: true,
   ).copyWith(
     textTheme: _textTheme,
+    appBarTheme: _appBarTheme,
     elevatedButtonTheme: _elevatedButtonTheme,
     navigationBarTheme: _navigatorBarTheme,
   );
