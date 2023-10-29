@@ -1,6 +1,7 @@
 import 'package:find_coffee_app/src/common/di/modules_config.dart';
 import 'package:find_coffee_app/src/config/configuration.dart';
 import 'package:flutter/material.dart';
+import 'package:ui_theme/ui_theme.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});

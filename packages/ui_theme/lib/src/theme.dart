@@ -1,5 +1,6 @@
-import 'package:find_coffee_app/src/config/configuration.dart';
 import 'package:flutter/material.dart';
+import 'package:ui_theme/src/colors.dart';
+import 'package:ui_theme/src/typography.dart';
 
 class CustomTheme {
   CustomTheme._();

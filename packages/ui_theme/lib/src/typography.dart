@@ -1,5 +1,5 @@
-import 'package:find_coffee_app/src/config/configuration.dart';
 import 'package:flutter/material.dart';
+import 'package:ui_theme/src/colors.dart';
 
 abstract class CustomFontWeight {
   static const regular = FontWeight.w400;
