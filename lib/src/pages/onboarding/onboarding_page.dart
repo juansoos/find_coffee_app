@@ -1,5 +1,4 @@
-import 'package:find_coffee_app/src/common/di/modules_config.dart';
-import 'package:find_coffee_app/src/config/configuration.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ui_theme/ui_theme.dart';
 
@@ -13,30 +12,21 @@ class OnboardingPage extends StatefulWidget {
 class _OnboardingPageState extends State<OnboardingPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: const SafeArea(
+    return CustomScaffold(
+      child: SafeArea(
         child: Padding(
-          padding: EdgeInsets.only(top: 32, left: 24, right: 24),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text('Content here!', style: CustomTypography.display2)
-              ],
-            ),
+          padding: const EdgeInsets.all(14),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const CustomText.display2(text: "Onboarding page"),
+              const SizedBox(height: 20),
+              CustomButton(text: 'Starting', onPressed: () {}),
+            ],
           ),
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-        child: ElevatedButton(
-          onPressed: () => RouterModule.router().replaceTo(HomeRoute()),
-          style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50)),
-          child: const Text("Start"),
-        ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

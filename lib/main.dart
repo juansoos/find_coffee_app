@@ -2,17 +2,12 @@ import 'dart:async';
 
 import 'package:find_coffee_app/src/common/di/modules_config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_fimber/flutter_fimber.dart';
 import 'package:ui_theme/ui_theme.dart';
 
 void main() {
   runZonedGuarded(() {
     WidgetsFlutterBinding.ensureInitialized();
-
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: CustomColors.brown,
-    ));
 
     final navigatorKey = FlutterModule.navigatorKey();
     runApp(MyApp(navigatorKey: navigatorKey));
@@ -28,10 +23,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return PlatformApp(
       title: 'Find Coffee',
-      theme: CustomTheme.light,
-      themeMode: ThemeMode.light,
       navigatorKey: navigatorKey,
       onGenerateRoute: RouterModule.router().generateRoute,
     );
