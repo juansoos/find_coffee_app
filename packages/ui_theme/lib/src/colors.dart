@@ -14,6 +14,7 @@ class CustomColors {
   static const Color onSecondary = Color(0xFFEAEAEA);
 
   static const Color background = Color(0xFFFFFFFF);
+  static const Color white = Color(0xFFFFFFFF);
 
   static const Color error = Color(0xFFB91313);
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ui_theme/src/colors.dart';
 import 'package:ui_theme/src/typography.dart';
@@ -61,6 +62,26 @@ class CustomTheme {
     );
   }
 
+  static BottomNavigationBarThemeData get _bottomNavigatorBarTheme {
+    const selectedColor = CustomColors.brown;
+    const unselectedColor = CustomColors.lightBrown;
+
+    return BottomNavigationBarThemeData(
+      backgroundColor: CustomColors.cream,
+      elevation: 10,
+      selectedIconTheme: const IconThemeData(color: selectedColor),
+      unselectedIconTheme: const IconThemeData(color: unselectedColor),
+      selectedItemColor: selectedColor,
+      unselectedItemColor: unselectedColor,
+      showUnselectedLabels: true,
+      showSelectedLabels: true,
+      selectedLabelStyle:
+          CustomTypography.body2.copyWith(color: CustomColors.brown),
+      unselectedLabelStyle:
+          CustomTypography.body2.copyWith(color: CustomColors.lightBrown),
+    );
+  }
+
   static AppBarTheme get _appBarTheme {
     return AppBarTheme(
         color: CustomColors.brown,
@@ -70,7 +91,7 @@ class CustomTheme {
         ));
   }
 
-  static ThemeData light = ThemeData.from(
+  static ThemeData material = ThemeData.from(
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
       primary: CustomColors.primary,
@@ -90,5 +111,16 @@ class CustomTheme {
     appBarTheme: _appBarTheme,
     elevatedButtonTheme: _elevatedButtonTheme,
     navigationBarTheme: _navigatorBarTheme,
+    bottomNavigationBarTheme: _bottomNavigatorBarTheme,
+  );
+
+  static CupertinoThemeData cupertino = const CupertinoThemeData.raw(
+    Brightness.light,
+    CustomColors.brown,
+    CustomColors.onPrimary,
+    CupertinoTextThemeData(),
+    CustomColors.background,
+    CustomColors.background,
+    true,
   );
 }

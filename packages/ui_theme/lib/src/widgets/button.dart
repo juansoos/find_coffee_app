@@ -1,0 +1,31 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:ui_theme/src/widgets/platform/platform_widget.dart';
+import 'package:ui_theme/src/widgets/text.dart';
+
+class CustomButton extends PlatformWidget<CupertinoButton, ElevatedButton> {
+  const CustomButton({
+    super.key,
+    required this.text,
+    this.onPressed,
+  });
+
+  final String text;
+  final void Function()? onPressed;
+
+  @override
+  ElevatedButton buildAndroidWidget(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      child: CustomText.title3(text: text),
+    );
+  }
+
+  @override
+  CupertinoButton buildIosWidget(BuildContext context) {
+    return CupertinoButton.filled(
+      onPressed: onPressed,
+      child: CustomText.title3(text: text),
+    );
+  }
+}
