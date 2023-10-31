@@ -1,3 +1,5 @@
+import 'package:find_coffee_app/src/pages/map/map_page.dart';
+import 'package:find_coffee_app/src/pages/tools/tools_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ui_theme/ui_theme.dart';
 
@@ -11,17 +13,17 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int currentPageIndex = 0;
 
-  final pages = [const Placeholder(), const Placeholder()];
+  final pages = [const MapPage(), const ToolsPage()];
   final items = [
     TabBarItem(
-      selected: const HomeIcon(),
-      unselected: const HomeIconOutlined(),
-      label: "Home",
+      selected: const MapIcon(),
+      unselected: const MapIconOutlined(),
+      label: "Map",
     ),
     TabBarItem(
-      selected: const ProfileIcon(),
-      unselected: const ProfileIconOutlined(),
-      label: "Profile",
+      selected: const ToolsIcon(),
+      unselected: const ToolsIconOutlined(),
+      label: "Tools",
     ),
   ];
 

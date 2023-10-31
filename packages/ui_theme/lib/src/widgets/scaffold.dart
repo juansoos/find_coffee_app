@@ -37,6 +37,7 @@ class CustomScaffold extends PlatformWidget<CupertinoPageScaffold, Scaffold> {
       navigationBar: appBarTitle != null
           ? CupertinoNavigationBar(
               middle: CustomText.appBar(text: appBarTitle!),
+              backgroundColor: CustomColors.brown,
             )
           : null,
       child: child,
