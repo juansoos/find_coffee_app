@@ -45,3 +45,6 @@ app.*.map.json
 
 # Enviroment
 .env
+
+# Intl generated
+lib/generated/

@@ -1,3 +1,4 @@
+import 'package:find_coffee_app/generated/l10n.dart';
 import 'package:find_coffee_app/src/common/di/modules_config.dart';
 import 'package:find_coffee_app/src/config/configuration.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,6 +15,8 @@ class OnboardingPage extends StatefulWidget {
 class _OnboardingPageState extends State<OnboardingPage> {
   @override
   Widget build(BuildContext context) {
+    final i18n = I18n();
+
     return CustomScaffold(
       child: SafeArea(
         child: Padding(
@@ -25,7 +28,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               const CustomText.display2(text: "Onboarding page"),
               const SizedBox(height: 20),
               CustomButton(
-                text: 'Starting',
+                text: i18n.start,
                 onPressed: () => RouterModule.router().replaceTo(HomeRoute()),
               ),
             ],

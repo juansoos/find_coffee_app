@@ -7,12 +7,18 @@ class PlatformApp extends PlatformWidget<CupertinoApp, MaterialApp> {
     required this.navigatorKey,
     required this.title,
     required this.onGenerateRoute,
+    required this.supportedLocales,
+    this.locale,
+    this.localizationsDelegates,
     super.key,
   });
 
   final GlobalKey<NavigatorState> navigatorKey;
   final Route<dynamic>? Function(RouteSettings) onGenerateRoute;
   final String title;
+  final Locale? locale;
+  final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
+  final Iterable<Locale> supportedLocales;
 
   @override
   MaterialApp buildAndroidWidget(BuildContext context) {
@@ -22,6 +28,9 @@ class PlatformApp extends PlatformWidget<CupertinoApp, MaterialApp> {
       themeMode: ThemeMode.light,
       navigatorKey: navigatorKey,
       onGenerateRoute: onGenerateRoute,
+      locale: locale,
+      localizationsDelegates: localizationsDelegates,
+      supportedLocales: supportedLocales,
     );
   }
 
@@ -32,6 +41,9 @@ class PlatformApp extends PlatformWidget<CupertinoApp, MaterialApp> {
       theme: CustomTheme.cupertino,
       navigatorKey: navigatorKey,
       onGenerateRoute: onGenerateRoute,
+      locale: locale,
+      localizationsDelegates: localizationsDelegates,
+      supportedLocales: supportedLocales,
     );
   }
 }
