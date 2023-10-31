@@ -1,3 +1,4 @@
+import 'package:find_coffee_app/generated/l10n.dart';
 import 'package:find_coffee_app/src/pages/map/map_page.dart';
 import 'package:find_coffee_app/src/pages/tools/tools_page.dart';
 import 'package:flutter/material.dart';
@@ -13,20 +14,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int currentPageIndex = 0;
 
-  final pages = [const MapPage(), const ToolsPage()];
-  final items = [
-    TabBarItem(
-      selected: const MapIcon(),
-      unselected: const MapIconOutlined(),
-      label: "Map",
-    ),
-    TabBarItem(
-      selected: const ToolsIcon(),
-      unselected: const ToolsIconOutlined(),
-      label: "Tools",
-    ),
-  ];
-
   void onItemTapped(int index) {
     setState(() {
       currentPageIndex = index;
@@ -35,8 +22,23 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final i18n = I18n();
+
+    final items = [
+      TabBarItem(
+        selected: const MapIcon(),
+        unselected: const MapIconOutlined(),
+        label: i18n.map,
+      ),
+      TabBarItem(
+        selected: const ToolsIcon(),
+        unselected: const ToolsIconOutlined(),
+        label: i18n.tools,
+      ),
+    ];
+
     return CustomTabScaffold(
-      pages: pages,
+      pages: const [MapPage(), ToolsPage()],
       items: items,
       position: currentPageIndex,
       onItemTapped: onItemTapped,
