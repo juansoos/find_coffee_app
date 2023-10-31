@@ -1,3 +1,5 @@
+import 'package:find_coffee_app/src/common/di/modules_config.dart';
+import 'package:find_coffee_app/src/config/configuration.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ui_theme/ui_theme.dart';
@@ -22,7 +24,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
             children: [
               const CustomText.display2(text: "Onboarding page"),
               const SizedBox(height: 20),
-              CustomButton(text: 'Starting', onPressed: () {}),
+              CustomButton(
+                text: 'Starting',
+                onPressed: () => RouterModule.router().replaceTo(HomeRoute()),
+              ),
             ],
           ),
         ),
