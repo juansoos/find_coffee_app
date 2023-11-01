@@ -46,4 +46,5 @@ Start the app
 | Android                                                                     | iOS                                                                     |
 |-----------------------------------------------------------------------------|-------------------------------------------------------------------------|
 | <img src="./screenshots/android_onboarding.png" alt="drawing" width="200"/> | <img src="./screenshots/ios_onboarding.png" alt="drawing" width="200"/> |
-| <img src="./screenshots/android_home.png" alt="drawing" width="200"/>       | <img src="./screenshots/ios_home.png" alt="drawing" width="200"/>       |
+| <img src="./screenshots/android_map.png" alt="drawing" width="200"/>        | <img src="./screenshots/ios_map.png" alt="drawing" width="200"/>        |
+| <img src="./screenshots/android_tools.png" alt="drawing" width="200"/>      | <img src="./screenshots/ios_tools.png" alt="drawing" width="200"/>      |

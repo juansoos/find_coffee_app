@@ -12,16 +12,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_localizations:
+    sdk: flutter
+  ui_theme:
+    path: packages/ui_theme
   cupertino_icons: 1.0.6
   flutter_fimber: 0.7.1
   google_maps_flutter: 2.5.0
   flutter_config: 2.0.2
   intl: 0.18.1
-  ui_theme:
-    path: packages/ui_theme
-  flutter_localizations:
-    sdk: flutter
+  shared_preferences: 2.2.2
 
 dev_dependencies:
   flutter_test:
