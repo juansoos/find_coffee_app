@@ -23,11 +23,25 @@ class CustomText extends StatelessWidget {
     this.color,
   });
 
+  const CustomText.headline3({
+    super.key,
+    required this.text,
+    this.style = CustomTypography.headline3,
+    this.color,
+  });
+
   const CustomText.title3({
     super.key,
     required this.text,
     this.style = CustomTypography.title3,
     this.color = CustomColors.white,
+  });
+
+  const CustomText.body2({
+    super.key,
+    required this.text,
+    this.style = CustomTypography.body2,
+    this.color,
   });
 
   final String text;
@@ -36,6 +50,10 @@ class CustomText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(text, style: style.copyWith(color: color));
+    return Text(
+      text,
+      style: style.copyWith(color: color),
+      textAlign: TextAlign.center,
+    );
   }
 }

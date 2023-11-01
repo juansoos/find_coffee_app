@@ -2,5 +2,7 @@
   "@@locale": "es",
   "tools": "Herramientas",
   "map": "Mapa",
-  "start": "Iniciar"
+  "getStarted": "Comenzar",
+  "skip": "Saltar",
+  "next": "Siguiente"
 }
