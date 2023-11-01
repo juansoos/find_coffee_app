@@ -2,14 +2,17 @@ import 'dart:async';
 
 import 'package:find_coffee_app/generated/l10n.dart';
 import 'package:find_coffee_app/src/common/di/modules_config.dart';
+import 'package:find_coffee_app/src/common/storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fimber/flutter_fimber.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:ui_theme/ui_theme.dart';
 
 void main() {
-  runZonedGuarded(() {
+  runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
+
+    await Storage.init();
 
     final navigatorKey = FlutterModule.navigatorKey();
     runApp(MyApp(navigatorKey: navigatorKey));
