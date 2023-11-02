@@ -20,11 +20,13 @@ class OnboardingPage extends StatefulWidget {
 }
 
 class _OnboardingPageState extends State<OnboardingPage> {
-  final pageController = PageController();
-  final selectedIndex = ValueNotifier(0);
   final OnboardingViewModel _viewModel = OnboardingViewModel(
     RouterModule.router(),
+    InteractorModule.checkOnboardingInteractor(),
   );
+
+  final pageController = PageController();
+  final selectedIndex = ValueNotifier(0);
 
   @override
   void dispose() {

@@ -7,6 +7,9 @@ abstract class RouterModule {
   static Router router() {
     final navigatorKey = FlutterModule.navigatorKey();
 
-    return Router(navigatorKey);
+    return Router(
+      navigatorKey,
+      InteractorModule.validateCheckOnboardingInteractor(),
+    );
   }
 }
