@@ -1,8 +1,16 @@
 import 'package:find_coffee_app/generated/l10n.dart';
 import 'package:find_coffee_app/src/common/di/modules_config.dart';
-import 'package:find_coffee_app/src/config/configuration.dart';
+import 'package:find_coffee_app/src/pages/onboarding/onboarding_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:ui_theme/ui_theme.dart';
+
+final illustrations = ["a", "b", "c"];
+final titles = ["Title 1", "Title 2", "Title 3"];
+final descriptions = [
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+];
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -14,18 +22,16 @@ class OnboardingPage extends StatefulWidget {
 class _OnboardingPageState extends State<OnboardingPage> {
   final pageController = PageController();
   final selectedIndex = ValueNotifier(0);
+  final OnboardingViewModel _viewModel = OnboardingViewModel(
+    RouterModule.router(),
+  );
 
-  final illustrations = ["a", "b", "c"];
-  final titles = [
-    "Title 1",
-    "Title 2",
-    "Title 3",
-  ];
-  final descriptions = [
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-  ];
+  @override
+  void dispose() {
+    super.dispose();
+
+    pageController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,41 +52,27 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       description: descriptions[index],
                     );
                   },
-                  onPageChanged: (value) {
-                    selectedIndex.value = value;
-                  },
+                  onPageChanged: _onPageChanged,
                 ),
               ),
               ValueListenableBuilder(
                 valueListenable: selectedIndex,
-                builder: (context, index, child) {
+                builder: (_, index, __) {
                   return _OnboardingDots(
                     position: index,
-                    size: illustrations.length,
+                    length: illustrations.length,
                   );
                 },
               ),
               ValueListenableBuilder(
                 valueListenable: selectedIndex,
-                builder: (context, index, child) {
+                builder: (_, index, __) {
                   return _OnboardingActions(
                     position: index,
                     length: illustrations.length,
-                    onSkipAction: () {
-                      pageController.jumpToPage(illustrations.length - 1);
-                    },
-                    onNextAction: () {
-                      final nextPage = selectedIndex.value + 1;
-
-                      pageController.animateToPage(
-                        nextPage,
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.ease,
-                      );
-                    },
-                    onStartedAction: () {
-                      RouterModule.router().replaceTo(HomeRoute());
-                    },
+                    onSkipAction: _onSkipActionClicked,
+                    onNextAction: _onNextActionClicked,
+                    onStartedAction: _viewModel.onGetStartedClicked,
                   );
                 },
               )
@@ -89,6 +81,24 @@ class _OnboardingPageState extends State<OnboardingPage> {
         ),
       ),
     );
+  }
+
+  void _onPageChanged(int value) {
+    selectedIndex.value = value;
+  }
+
+  void _onNextActionClicked() {
+    final nextPage = selectedIndex.value + 1;
+
+    pageController.animateToPage(
+      nextPage,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.ease,
+    );
+  }
+
+  void _onSkipActionClicked() {
+    pageController.jumpToPage(illustrations.length - 1);
   }
 }
 
@@ -129,11 +139,11 @@ class _OnboardingItem extends StatelessWidget {
 class _OnboardingDots extends StatelessWidget {
   const _OnboardingDots({
     required this.position,
-    required this.size,
+    required this.length,
   });
 
   final int position;
-  final int size;
+  final int length;
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +152,7 @@ class _OnboardingDots extends StatelessWidget {
       child: Wrap(
         spacing: 8,
         children: List.generate(
-          size,
+          length,
           (indexIndicator) {
             return AnimatedContainer(
               duration: const Duration(milliseconds: 300),
