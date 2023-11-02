@@ -1,3 +1,4 @@
+import 'package:find_coffee_app/src/api/interactor/validate_check_onboarding_interactor.dart';
 import 'package:find_coffee_app/src/config/route.dart';
 import 'package:find_coffee_app/src/pages/home/home_page.dart';
 import 'package:find_coffee_app/src/pages/onboarding/onboarding_page.dart';
@@ -5,9 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fimber/flutter_fimber.dart';
 
 class Router {
-  Router(this._navigatorKey);
+  Router(this._navigatorKey, this._validateCheckOnboardingInteractor);
 
   final GlobalKey<NavigatorState> _navigatorKey;
+  final ValidateCheckOnboardingInteractor _validateCheckOnboardingInteractor;
 
   Route<dynamic> generateRoute(RouteSettings settings) {
     final route = mapToRoute(settings)!;
@@ -27,7 +29,11 @@ class Router {
   }
 
   CustomRoute get initialRoute {
-    return OnboardingRoute();
+    if (_validateCheckOnboardingInteractor()) {
+      return HomeRoute();
+    } else {
+      return OnboardingRoute();
+    }
   }
 
   Future pushTo(CustomRoute route, {bool shouldShowAsDialog = false}) {

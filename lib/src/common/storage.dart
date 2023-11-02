@@ -32,7 +32,17 @@ class Storage {
     }
   }
 
+  Future<void> setBool(String key, bool? value) async {
+    if (value != null) {
+      await _sharedPreferences.setBool(key, value);
+    } else {
+      _sharedPreferences.remove(key);
+    }
+  }
+
   String? getString(String key) => _sharedPreferences.getString(key);
+
+  bool? getBool(String key) => _sharedPreferences.getBool(key);
 
   /*
   Should call reload() before reading from it to update its cache with any external changes.
