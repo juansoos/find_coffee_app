@@ -1,6 +1,6 @@
-import 'package:find_coffee_app/generated/l10n.dart';
 import 'package:find_coffee_app/src/common/di/modules_config.dart';
 import 'package:find_coffee_app/src/pages/onboarding/onboarding_view_model.dart';
+import 'package:find_coffee_app/src/pages/onboarding/widgets/onboarding_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:ui_theme/ui_theme.dart';
 
@@ -48,7 +48,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   controller: pageController,
                   itemCount: illustrations.length,
                   itemBuilder: (context, index) {
-                    return _OnboardingItem(
+                    return OnboardingItem(
                       illustration: illustrations[index],
                       title: titles[index],
                       description: descriptions[index],
@@ -60,7 +60,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               ValueListenableBuilder(
                 valueListenable: selectedIndex,
                 builder: (_, index, __) {
-                  return _OnboardingDots(
+                  return OnboardingDots(
                     position: index,
                     length: illustrations.length,
                   );
@@ -69,7 +69,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               ValueListenableBuilder(
                 valueListenable: selectedIndex,
                 builder: (_, index, __) {
-                  return _OnboardingActions(
+                  return OnboardingActions(
                     position: index,
                     length: illustrations.length,
                     onSkipAction: _onSkipActionClicked,
@@ -101,117 +101,5 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   void _onSkipActionClicked() {
     pageController.jumpToPage(illustrations.length - 1);
-  }
-}
-
-class _OnboardingItem extends StatelessWidget {
-  const _OnboardingItem({
-    required this.illustration,
-    required this.title,
-    required this.description,
-  });
-
-  final String illustration;
-  final String title;
-  final String description;
-
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        children: [
-          SizedBox(
-            height: size.height * 0.5,
-            width: size.width,
-            child: const Placeholder(),
-          ),
-          const SizedBox(height: 16),
-          CustomText.headline3(text: title),
-          const SizedBox(height: 16),
-          CustomText.body2(text: description),
-        ],
-      ),
-    );
-  }
-}
-
-class _OnboardingDots extends StatelessWidget {
-  const _OnboardingDots({
-    required this.position,
-    required this.length,
-  });
-
-  final int position;
-  final int length;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 16, bottom: 32),
-      child: Wrap(
-        spacing: 8,
-        children: List.generate(
-          length,
-          (indexIndicator) {
-            return AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
-              height: 8,
-              width: indexIndicator == position ? 24 : 8,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                color: indexIndicator == position
-                    ? CustomColors.brown
-                    : CustomColors.brown.withOpacity(0.5),
-              ),
-            );
-          },
-        ),
-      ),
-    );
-  }
-}
-
-class _OnboardingActions extends StatelessWidget {
-  const _OnboardingActions({
-    required this.position,
-    required this.length,
-    required this.onSkipAction,
-    required this.onNextAction,
-    required this.onStartedAction,
-  });
-
-  final int position;
-  final int length;
-
-  final void Function() onSkipAction;
-  final void Function() onNextAction;
-  final void Function() onStartedAction;
-
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final i18n = I18n();
-
-    if (position == length - 1) {
-      return SizedBox(
-        width: size.width,
-        height: 48,
-        child: CustomButtonFilled(
-          text: i18n.getStarted,
-          onPressed: onStartedAction,
-        ),
-      );
-    }
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        CustomButton(onPressed: onSkipAction, text: i18n.skip),
-        CustomButtonFilled(onPressed: onNextAction, text: i18n.next)
-      ],
-    );
   }
 }
