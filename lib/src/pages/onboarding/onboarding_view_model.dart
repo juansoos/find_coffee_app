@@ -10,6 +10,6 @@ class OnboardingViewModel {
   Future<void> onGetStartedClicked() async {
     await _checkOnboardingInteractor();
 
-    _router.pushTo(HomeRoute());
+    _router.replaceTo(HomeRoute());
   }
 }

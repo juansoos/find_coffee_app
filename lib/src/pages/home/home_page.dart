@@ -14,12 +14,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int currentPageIndex = 0;
 
-  void onItemTapped(int index) {
-    setState(() {
-      currentPageIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final i18n = I18n();
@@ -41,7 +35,13 @@ class _HomePageState extends State<HomePage> {
       pages: const [MapPage(), ToolsPage()],
       items: items,
       position: currentPageIndex,
-      onItemTapped: onItemTapped,
+      onItemTapped: _onItemTapped,
     );
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      currentPageIndex = index;
+    });
   }
 }
