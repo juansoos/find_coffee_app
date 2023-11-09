@@ -1,0 +1,35 @@
+name: PR Metadata Checks
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+# Cancel jobs and just run the last one
+concurrency:
+  group: ${{ github.head_ref }}-pr-metadata
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 100 # Any value to decrease possibility of failing
+      - name: Install and set Flutter version
+        uses: subosito/flutter-action@v1.4.0
+        with:
+          flutter-version: '3.13.9'
+          channel: 'stable'
+          cache: true
+          cache-key: flutter-3.13.9 # optional, change this to force refresh cache
+          cache-path: ${{ runner.tool_cache }}/flutter # optional, change this to specify the cache path
+
+      - name: Restore packages
+        run: flutter pub get
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Run tests
+        run: flutter test --coverage
