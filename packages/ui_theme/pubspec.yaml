@@ -4,8 +4,8 @@ version: 0.0.1
 homepage: ""
 
 environment:
-  sdk: 3.1.5
-  flutter: 3.13.9
+  sdk: 3.2.0
+  flutter: 3.16.0
 
 dependencies:
   flutter:
@@ -14,12 +14,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: 2.0.3
+  flutter_lints: 3.0.1
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
-# The following section is specific to Flutter packages.
 flutter:
 
   fonts:
