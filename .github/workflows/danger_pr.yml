@@ -27,10 +27,10 @@ jobs:
       - name: Install and set Flutter version
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.13.9'
+          flutter-version: '3.16.0'
           channel: 'stable'
           cache: true
-          cache-key: flutter-3.13.9 # optional, change this to force refresh cache
+          cache-key: flutter-3.16.0 # optional, change this to force refresh cache
           cache-path: ${{ runner.tool_cache }}/flutter # optional, change this to specify the cache path
 
       - name: Restore packages
